@@ -2,7 +2,7 @@
  @file bzrtp.c
 
  @brief Public entry points to the ZRTP implementation
- 
+
  @author Johan Pascal
 
  @copyright Copyright (C) 2014 Belledonne Communications, Grenoble, France
@@ -11,12 +11,12 @@
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
@@ -42,10 +42,10 @@ static bzrtpChannelContext_t *getChannelContext(bzrtpContext_t *zrtpContext, uin
 static uint8_t copyCryptoTypes(uint8_t destination[7], uint8_t source[7], uint8_t size);
 
 /*
- * Create context structure and initialise it 
+ * Create context structure and initialise it
  *
  * @return The ZRTP engine context data
- *                                                                        
+ *
 */
 bzrtpContext_t *bzrtp_createBzrtpContext(void) {
 	int i;
@@ -68,7 +68,7 @@ bzrtpContext_t *bzrtp_createBzrtpContext(void) {
 	context->zrtpCallbacks.bzrtp_srtpSecretsAvailable = NULL;
 	context->zrtpCallbacks.bzrtp_startSrtpSession = NULL;
 	context->zrtpCallbacks.bzrtp_contextReadyForExportedKeys = NULL;
-	
+
 
 
 	for (i=1; i<ZRTP_MAX_CHANNEL_NUMBER; i++) {
@@ -168,7 +168,7 @@ int bzrtp_initBzrtpContext(bzrtpContext_t *context, uint32_t selfSSRC) {
  * @param[in]	selfSSRC	The SSRC identifying the channel to be destroyed
  *
  * @return the number of channel still active in this ZRTP context
- *                                                                           
+ *
 */
 int bzrtp_destroyBzrtpContext(bzrtpContext_t *context, uint32_t selfSSRC) {
 	int i;
@@ -418,7 +418,7 @@ int bzrtp_iterate(bzrtpContext_t *zrtpContext, uint32_t selfSSRC, uint64_t timeR
  * @param[in]		clientData		The clientData pointer, casted to a (void *)
  *
  * @return 0 on success
- *                                                                           
+ *
 */
 int bzrtp_setClientData(bzrtpContext_t *zrtpContext, uint32_t selfSSRC, void *clientData) {
 	/* get channel context */
@@ -489,7 +489,7 @@ int bzrtp_processMessage(bzrtpContext_t *zrtpContext, uint32_t selfSSRC, uint8_t
 		bzrtp_freeZrtpPacket(zrtpPacket);
 		bzrtp_freeZrtpPacket(pingAckPacket);
 		zrtpChannelContext->pingPacket = NULL;
-		
+
 		return retval;
 	}
 
@@ -542,6 +542,11 @@ void bzrtp_resetSASVerified(bzrtpContext_t *zrtpContext) {
 	}
 }
 
+/* FIXME: Temporary workaround for -Wcast-function-type. */
+#if __GNUC__ >= 8
+	_Pragma("GCC diagnostic push")
+	_Pragma("GCC diagnostic ignored \"-Wcast-function-type\"")
+#endif // if __GNUC__ >= 8
 
 /*
  * @brief  Allow client to compute an exported according to RFC section 4.5.2
@@ -596,6 +601,10 @@ int bzrtp_exportKey(bzrtpContext_t *zrtpContext, char *label, size_t labelLength
 	}
 	return 0;
 }
+
+#if __GNUC__ >= 8
+	_Pragma("GCC diagnostic pop")
+#endif // if __GNUC__ >= 8
 
 /*
  * @brief Reset the retransmission timer of a given channel.
@@ -950,7 +959,7 @@ static bzrtpChannelContext_t *getChannelContext(bzrtpContext_t *zrtpContext, uin
 	if (zrtpContext==NULL) {
 		return NULL;
 	}
-	
+
 	for (i=0; i<ZRTP_MAX_CHANNEL_NUMBER; i++) {
 		if (zrtpContext->channelContext[i]!=NULL) {
 			if (zrtpContext->channelContext[i]->selfSSRC == selfSSRC) {
@@ -964,7 +973,7 @@ static bzrtpChannelContext_t *getChannelContext(bzrtpContext_t *zrtpContext, uin
 /**
  * @brief Initialise the context of a channel and create and store the Hello packet
  * Initialise some vectors
- * 
+ *
  * @param[in] 		zrtpContext			The zrtpContext hosting this channel, needed to acces the RNG
  * @param[out]		zrtpChanneContext	The channel context to be initialised
  * @param[in]		selfSSRC			The SSRC allocated to this channel
@@ -1074,7 +1083,7 @@ static int bzrtp_initChannelContext(bzrtpContext_t *zrtpContext, bzrtpChannelCon
 /**
  * @brief Destroy the context of a channel
  * Free allocated buffers, destroy keys
- * 
+ *
  * @param[in] 		zrtpContext			The zrtpContext hosting this channel, needed to acces the RNG
  * @param[in] 		zrtpChannelContext	The channel context to be destroyed
  */

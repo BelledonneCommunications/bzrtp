@@ -282,6 +282,11 @@ typedef struct my_Context_struct {
 	bzrtpChannelContext_t *peerChannelContext;
 } my_Context_t;
 
+/* FIXME: Temporary workaround for -Wcast-function-type. */
+#if __GNUC__ >= 8
+	_Pragma("GCC diagnostic push")
+	_Pragma("GCC diagnostic ignored \"-Wcast-function-type\"")
+#endif // if __GNUC__ >= 8
 
 void test_parserComplete() {
 
@@ -1510,6 +1515,9 @@ void test_parserComplete() {
 
 }
 
+#if __GNUC__ >= 8
+	_Pragma("GCC diagnostic pop")
+#endif // if __GNUC__ >= 8
 
 typedef struct packetDatas_struct {
 	uint8_t packetString[1000];
