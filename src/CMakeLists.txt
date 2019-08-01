@@ -55,13 +55,13 @@ if(XML2_FOUND)
 endif()
 
 if(ENABLE_STATIC)
-	add_library(bzrtp-static STATIC ${SOURCE_FILES})
-	set_target_properties(bzrtp-static PROPERTIES OUTPUT_NAME bzrtp)
-	target_include_directories(bzrtp-static INTERFACE
+	add_library(bzrtp STATIC ${SOURCE_FILES})
+	set_target_properties(bzrtp PROPERTIES OUTPUT_NAME bzrtp)
+	target_include_directories(bzrtp INTERFACE
 		$<INSTALL_INTERFACE:include>
 		PRIVATE ${INCLUDE_DIRS})
-	target_link_libraries(bzrtp-static PUBLIC bctoolbox ${LIBS})
-	install(TARGETS bzrtp-static EXPORT ${EXPORT_TARGETS_NAME}Targets
+	target_link_libraries(bzrtp PUBLIC bctoolbox ${LIBS})
+	install(TARGETS bzrtp EXPORT ${EXPORT_TARGETS_NAME}Targets
 		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 		PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
 	)

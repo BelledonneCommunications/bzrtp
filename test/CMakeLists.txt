@@ -42,7 +42,7 @@ set_target_properties(bzrtpTest PROPERTIES LINKER_LANGUAGE CXX)
 target_link_libraries(bzrtpTest PRIVATE bctoolbox bctoolbox-tester)
 
 if(ENABLE_STATIC)
-	target_link_libraries(bzrtpTest PRIVATE bzrtp-static)
+	target_link_libraries(bzrtpTest PRIVATE bzrtp)
 else()
 	target_link_libraries(bzrtpTest PRIVATE bzrtp)
 endif()
