@@ -20,9 +20,9 @@
 #
 ############################################################################
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.11) # we need CMake 3.11 for defining 'package_source' target as custom target
 
-project(bzrtp VERSION 1.0.6 LANGUAGES C CXX)
+project(bzrtp VERSION 4.3.0 LANGUAGES C CXX)
 
 option(ENABLE_SHARED "Build shared library." YES)
 option(ENABLE_STATIC "Build static library." YES)
