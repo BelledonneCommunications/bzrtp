@@ -26,6 +26,7 @@
 #include "cryptoUtils.h"
 
 #include "bzrtpTest.h"
+#include "TargetConditionals.h"
 
 #ifndef _WIN32
 #if !defined(__QNXNTO__) && !(defined(__ANDROID__) && defined(__LP64__))
