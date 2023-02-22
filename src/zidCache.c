@@ -45,7 +45,7 @@
  */
 #define ZIDCACHE_DBSCHEMA_VERSION_NUMBER 0x000002
 
-static int callback_getSelfZID(void *data, UNUSED(int argc), char **argv, UNUSED(char **colName)){
+static int callback_getSelfZID(void *data, BCTBX_UNUSED(int argc), char **argv, BCTBX_UNUSED(char **colName)){
 	uint8_t **selfZID = (uint8_t **)data;
 
 	/* we selected zid only, it must then be in argv[0] */
@@ -57,7 +57,7 @@ static int callback_getSelfZID(void *data, UNUSED(int argc), char **argv, UNUSED
 	return 0;
 }
 
-static int callback_getUserVersion(void *data, UNUSED(int argc), char **argv, UNUSED(char **colName)){
+static int callback_getUserVersion(void *data, BCTBX_UNUSED(int argc), char **argv, BCTBX_UNUSED(char **colName)){
 	int *userVersion = (int *)data;
 
 	if (argv[0]) {

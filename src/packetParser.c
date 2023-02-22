@@ -294,7 +294,7 @@ bzrtpPacket_t *bzrtp_packetCheck(uint8_t **inputPtr, uint16_t *inputLength, bzrt
 
 
 /* Call this function after the packetCheck one, to actually parse the packet : create and fill the messageData structure */
-int bzrtp_packetParser(UNUSED(bzrtpContext_t *zrtpContext), bzrtpChannelContext_t *zrtpChannelContext, const uint8_t * input, uint16_t inputLength, bzrtpPacket_t *zrtpPacket) {
+int bzrtp_packetParser(BCTBX_UNUSED(bzrtpContext_t *zrtpContext), bzrtpChannelContext_t *zrtpChannelContext, const uint8_t * input, uint16_t inputLength, bzrtpPacket_t *zrtpPacket) {
 
 	int i;
 

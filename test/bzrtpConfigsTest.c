@@ -200,7 +200,7 @@ int getSAS(void *clientData, bzrtpSrtpSecrets_t *secrets, int32_t pvs) {
 	return 0;
 }
 
-int getMessage(void *clientData, const uint8_t level, const uint8_t message, UNUSED(const char *messageString)) {
+int getMessage(void *clientData, const uint8_t level, const uint8_t message, BCTBX_UNUSED(const char *messageString)) {
 	/* get the client context */
 	clientContext_t *clientContext = (clientContext_t *)clientData;
 	if (level == BZRTP_MESSAGE_ERROR && message == BZRTP_MESSAGE_CACHEMISMATCH) {
@@ -215,7 +215,7 @@ int getMessage(void *clientData, const uint8_t level, const uint8_t message, UNU
 	return 0;
 }
 
-int computeExportedKeys(void *clientData, UNUSED(int zuid), uint8_t role) {
+int computeExportedKeys(void *clientData, BCTBX_UNUSED(int zuid), uint8_t role) {
 	size_t keyLength = 16;
 	/* get the client context */
 	clientContext_t *clientContext = (clientContext_t *)clientData;
