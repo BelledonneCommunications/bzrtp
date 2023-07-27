@@ -2406,5 +2406,6 @@ test_suite_t key_exchange_test_suite = {
 	NULL,
 	NULL,
 	sizeof(key_exchange_tests) / sizeof(key_exchange_tests[0]),
-	key_exchange_tests
+	key_exchange_tests,
+	0
 };
